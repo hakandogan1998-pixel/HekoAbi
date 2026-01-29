@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Usta Döner - Rechner</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg:#fff8f0;
+    --panel:#fff1e6;
+    --text:#3b1e1e;
+    --accent:#a83232;
+    --accent-dark:#7a1f1f;
+    --gold:#d4af37;
+}
+
+body.dark {
+    --bg:#1a0f0f;
+    --panel:#2a1515;
+    --text:#f3e7d9;
+    --accent:#d4af37;
+    --accent-dark:#b38b2e;
+    --gold:#d4af37;
+}
+
+body {
+    font-family:'Montserrat',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    margin:0;
+    padding:12px;
+    display:flex;
+    justify-content:center;
+    transition:0.3s;
+}
+
+.container {
+    width:100%;
+    max-width:560px;
+}
+
+h1 {
+    font-family:'Cinzel',serif;
+    text-align:center;
+    font-size:46px;
+    color:var(--accent);
+    margin:5px 0 15px;
+}
+
+h2 {
+    font-family:'Cinzel',serif;
+    font-size:20px;
+    border-bottom:1px solid var(--gold);
+    margin:15px 0 8px;
+}
+
+.section {
+    background:var(--panel);
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+.article {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:10px 0;
+    font-size:16px;
+}
+
+.article span {
+    flex:1;
+    text-align:center;
+    font-weight:bold;
+}
+
+.count {
+    width:28px;
+    text-align:center;
+    font-weight:bold;
+    color:var(--accent);
+}
+
+.buttons-left,.buttons-right {
+    display:flex;
+    gap:5px;
+}
+
+button {
+    padding:6px 9px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:bold;
+    background:var(--accent);
+    color:white;
+    font-size:13px;
+}
+
+button:hover {
+    background:var(--accent-dark);
+}
+
+#rechnung {
+    background:var(--panel);
+    padding:14px;
+    border-radius:10px;
+    margin-top:5px;
+    font-size:15px;
+}
+
+#gesamtText {
+    font-weight:bold;
+    margin-top:6px;
+}
+
+.person-block {
+    width:14px;
+    height:14px;
+    background:var(--accent);
+    border-radius:50%;
+    display:inline-block;
+    margin-right:4px;
+}
+
+.topbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.dark-toggle {
+    font-size:13px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="topbar">
+    <h1>Usta Döner</h1>
+    <button class="dark-toggle" onclick="toggleDark()">🌙</button>
+</div>
+
+<!-- SPEISEN -->
+<div class="section">
+<h2>Speisen</h2>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Döner Kebap',600,-5)">-5</button>
+    <button onclick="addItem('Döner Kebap',600,-1)">-</button>
+  </div>
+  <span>Döner Kebap $600</span>
+  <div class="count" id="count-Döner Kebap">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Döner Kebap',600,1)">+</button>
+    <button onclick="addItem('Döner Kebap',600,5)">+5</button>
+  </div>
+</div>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Adana Kebap',550,-5)">-5</button>
+    <button onclick="addItem('Adana Kebap',550,-1)">-</button>
+  </div>
+  <span>Adana Kebap $550</span>
+  <div class="count" id="count-Adana Kebap">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Adana Kebap',550,1)">+</button>
+    <button onclick="addItem('Adana Kebap',550,5)">+5</button>
+  </div>
+</div>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Dönerbox',500,-5)">-5</button>
+    <button onclick="addItem('Dönerbox',500,-1)">-</button>
+  </div>
+  <span>Dönerbox $500</span>
+  <div class="count" id="count-Dönerbox">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Dönerbox',500,1)">+</button>
+    <button onclick="addItem('Dönerbox',500,5)">+5</button>
+  </div>
+</div>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Lahmacun',500,-5)">-5</button>
+    <button onclick="addItem('Lahmacun',500,-1)">-</button>
+  </div>
+  <span>Lahmacun $500</span>
+  <div class="count" id="count-Lahmacun">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Lahmacun',500,1)">+</button>
+    <button onclick="addItem('Lahmacun',500,5)">+5</button>
+  </div>
+</div>
+</div>
+
+<!-- GETRÄNKE -->
+<div class="section">
+<h2>Getränke</h2>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Ayran',300,-5)">-5</button>
+    <button onclick="addItem('Ayran',300,-1)">-</button>
+  </div>
+  <span>Ayran $300</span>
+  <div class="count" id="count-Ayran">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Ayran',300,1)">+</button>
+    <button onclick="addItem('Ayran',300,5)">+5</button>
+  </div>
+</div>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Gazoz',300,-5)">-5</button>
+    <button onclick="addItem('Gazoz',300,-1)">-</button>
+  </div>
+  <span>Gazoz $300</span>
+  <div class="count" id="count-Gazoz">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Gazoz',300,1)">+</button>
+    <button onclick="addItem('Gazoz',300,5)">+5</button>
+  </div>
+</div>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Çay',200,-5)">-5</button>
+    <button onclick="addItem('Çay',200,-1)">-</button>
+  </div>
+  <span>Çay $200</span>
+  <div class="count" id="count-Çay">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Çay',200,1)">+</button>
+    <button onclick="addItem('Çay',200,5)">+5</button>
+  </div>
+</div>
+</div>
+
+<!-- NACHSPEISEN -->
+<div class="section">
+<h2>Nachspeisen</h2>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Baklava',200,-5)">-5</button>
+    <button onclick="addItem('Baklava',200,-1)">-</button>
+  </div>
+  <span>Baklava $200</span>
+  <div class="count" id="count-Baklava">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Baklava',200,1)">+</button>
+    <button onclick="addItem('Baklava',200,5)">+5</button>
+  </div>
+</div>
+
+<div class="article">
+  <div class="buttons-left">
+    <button onclick="addItem('Künefe',200,-5)">-5</button>
+    <button onclick="addItem('Künefe',200,-1)">-</button>
+  </div>
+  <span>Künefe $200</span>
+  <div class="count" id="count-Künefe">0</div>
+  <div class="buttons-right">
+    <button onclick="addItem('Künefe',200,1)">+</button>
+    <button onclick="addItem('Künefe',200,5)">+5</button>
+  </div>
+</div>
+</div>
+
+<!-- RECHNUNG -->
+<div id="rechnung">
+<h2>Rechnung</h2>
+<div id="rechnungText">Keine Artikel ausgewählt.</div>
+<div id="personBlocks"></div>
+<div id="gesamtText"></div>
+<button onclick="resetCart()">Alles zurücksetzen</button>
+<button onclick="copyRechnung()">Rechnungsgrund kopieren</button>
+</div>
+
+</div>
+
+<script>
+let cart = {};
+
+function addItem(name, price, qty){
+    if(!cart[name]) cart[name]={price:price, quantity:0};
+    cart[name].quantity += qty;
+    if(cart[name].quantity<0) cart[name].quantity=0;
+    updateRechnung();
+}
+
+function updateRechnung(){
+    let foodDessertCount=0;
+    let drinkCount=0;
+    let totalPrice=0;
+    let itemsArr=[];
+    
+    let date = new Date();
+    let formattedDate = `${String(date.getDate()).padStart(2,'0')}.` +
+                        `${String(date.getMonth()+1).padStart(2,'0')}.` +
+                        `${date.getFullYear()}`;
+
+    for(let item in cart){
+        let qty = cart[item].quantity;
+        let countEl = document.getElementById("count-"+item);
+        if(countEl) countEl.innerText = qty;
+
+        if(qty>0){
+            itemsArr.push(`${qty}x ${item}`);
+            totalPrice += qty*cart[item].price;
+            if(['Döner Kebap','Adana Kebap','Dönerbox','Lahmacun','Baklava','Künefe'].includes(item)){
+                foodDessertCount += qty;
+            } else {
+                drinkCount += qty;
+            }
+        }
+    }
+
+    if(foodDessertCount+drinkCount==0){
+        document.getElementById('rechnungText').innerText='Keine Artikel ausgewählt.';
+        document.getElementById('gesamtText').innerText='';
+        document.getElementById('personBlocks').innerHTML='';
+        return;
+    }
+
+    let foodPerson = Math.ceil(foodDessertCount / 5);
+    let drinkPerson = Math.ceil(drinkCount / 5);
+    let personCount = Math.max(foodPerson, drinkPerson);
+
+    document.getElementById('rechnungText').innerText =
+      `${formattedDate} | ${personCount}P | Usta Döner - ${itemsArr.join(', ')}`;
+
+    document.getElementById('gesamtText').innerText =
+      `Gesamtsumme: $${totalPrice}`;
+
+    let blocks='';
+    for(let i=0;i<personCount;i++) blocks+='<div class="person-block"></div>';
+    document.getElementById('personBlocks').innerHTML=blocks;
+}
+
+function resetCart(){
+    cart={};
+    updateRechnung();
+    document.querySelectorAll('.count').forEach(el => el.innerText="0");
+}
+
+function copyRechnung(){
+    navigator.clipboard.writeText(document.getElementById('rechnungText').innerText);
+    alert('Rechnungsgrund kopiert!');
+}
+
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
